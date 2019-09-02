@@ -9,9 +9,9 @@ namespace SignalrPlaySongSample.LeaderClient.Pages
 {
     public class IndexModel : PageModel
     {
-        public void OnGet()
+        public IActionResult OnGet()
         {
-
+            return Redirect("/index.html");
         }
     }
 }

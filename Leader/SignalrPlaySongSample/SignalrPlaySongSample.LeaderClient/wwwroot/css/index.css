@@ -57,6 +57,12 @@ p{
     color: #fff
 }
 
+.gc {
+    color: rgb(239,138,138);
+}
+
 audio{
     margin-bottom:20px; 
 }
+
+#playerArea{display:none;}

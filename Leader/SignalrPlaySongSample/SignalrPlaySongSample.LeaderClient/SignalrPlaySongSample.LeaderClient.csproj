@@ -7,12 +7,12 @@
 
   <ItemGroup>
     <None Include="wwwroot\index.html" />
-    <None Include="wwwroot\我和我的祖国.mp3" />
   </ItemGroup>
 
 
   <ItemGroup>
     <PackageReference Include="Microsoft.AspNetCore.App" />
+    <PackageReference Include="Microsoft.AspNetCore.Hosting" Version="2.2.0" />
     <PackageReference Include="Microsoft.AspNetCore.Razor.Design" Version="2.2.0" PrivateAssets="All" />
     <PackageReference Include="Senparc.CO2NET" Version="0.8.5" />
   </ItemGroup>

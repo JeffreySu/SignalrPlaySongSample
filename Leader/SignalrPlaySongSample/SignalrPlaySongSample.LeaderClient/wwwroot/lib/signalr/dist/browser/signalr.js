@@ -1552,6 +1552,7 @@ var DefaultHttpClient = /** @class */ (function (_super) {
             xhr.open(request.method, request.url, true);
             xhr.withCredentials = true;
             xhr.setRequestHeader("X-Requested-With", "XMLHttpRequest");
+            xhr.setRequestHeader("Access-Control-Allow-Origin", "*");
             // Explicitly setting the Content-Type header for React Native on Android platform.
             xhr.setRequestHeader("Content-Type", "text/plain;charset=UTF-8");
             if (request.headers) {

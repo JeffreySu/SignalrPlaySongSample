@@ -31,10 +31,16 @@ namespace SignalrPlaySongSample.LeaderClient
                 options.MinimumSameSitePolicy = SameSiteMode.None;
             });
 
+            //SignalR ¿çÓò£ºhttps://github.com/aspnet/SignalR/issues/2095
+
 
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
+            //services.AddCors(o => o.AddPolicy("All", b => b.AllowAnyOrigin().AllowAnyHeader().AllowAnyMethod().AllowCredentials()));
+            services.AddCors(o => o.AddPolicy("All", b => b.WithOrigins("https://localhost:44359").AllowAnyHeader().AllowAnyMethod().AllowCredentials()));
 
-            services.AddSignalR();
+            services.AddSignalR(option=> {
+                option.EnableDetailedErrors = true;
+            });
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -55,12 +61,23 @@ namespace SignalrPlaySongSample.LeaderClient
             app.UseStaticFiles();
             app.UseCookiePolicy();
 
-            app.UseSignalR(routes =>
+            //app.UseCors();
+            app.UseCors("All")
+            //app.UseCors(builder =>
+            //{
+            //    builder.WithOrigins("http://192.168.101.4:8055")
+            //    .AllowAnyHeader().AllowAnyMethod().AllowCredentials();
+            //});
+
+            .UseSignalR(routes =>
             {
                 routes.MapHub<SongHub>("/songHub");
             });
 
+            app.UseWebSockets();
+
             app.UseMvc();
+
         }
     }
 }
