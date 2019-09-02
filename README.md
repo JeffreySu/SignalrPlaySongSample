@@ -1,5 +1,5 @@
 # SignalrPlaySongSample
-使用 SignalR 远程控制播放歌曲示例
+使用 SignalR 远程控制多台电脑同步播放歌曲示例
 
 ## 文件夹说明
 
