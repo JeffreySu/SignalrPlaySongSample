@@ -10,6 +10,13 @@ document.getElementById("startConnection").addEventListener("click", function (e
         .withUrl("https://" + ip + "/songHub", { skipNegotiation: true, transport: signalR.HttpTransportType.WebSockets })
         .build();
 
+    connection.start().then(function () {
+        document.getElementById("msg").innerText = connectMsg;
+        document.getElementById("playerArea").style.display = 'block';
+    }).catch(function (err) {
+        return console.error(err.toString());
+    });
+
     connection.on("Play", function (seconds) {
         document.getElementById("msg").innerText = '正在播放！';
         document.getElementById("player").currentTime = seconds;
@@ -19,13 +26,6 @@ document.getElementById("startConnection").addEventListener("click", function (e
     connection.on("Pause", function () {
         document.getElementById("msg").innerText = '已暂停播放！';
         document.getElementById("player").pause();
-    });
-
-    connection.start().then(function () {
-        document.getElementById("msg").innerText = connectMsg;
-        document.getElementById("playerArea").style.display = 'block';
-    }).catch(function (err) {
-        return console.error(err.toString());
     });
 
     event.preventDefault();
